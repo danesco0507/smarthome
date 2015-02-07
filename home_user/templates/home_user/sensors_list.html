@@ -44,21 +44,17 @@
             <table align="center" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Description</th>
-                        <th>Active?</th>
-                        <th>Sensor type</th>
-                        <th>Definition</th>
-                        <th>State definition</th>
+                        <th>Descripción del sensor</th>
+                        <th>Tipo de sensor</th>
+                        <th>Criticidad (1 - 3)</th>
+                        <th>Definición</th>
                     </tr>
                 </thead>
                 <tbody>
                      {% for sensor in sensorList %}
 
                           <tr>
-                            <td>{{ sensor.id }}</td>
                             <td>{{ sensor.description }}</td>
-                            <td>{{ sensor.state }}</td>
                             <td>{{ sensor.Sensor_type_id.name }}</td>
                             <td>{{ sensor.criticaly }}</td>
                             {% if sensor.state  == True %}
@@ -74,7 +70,7 @@
 
             </table>
             {% else %}
-                <p>You dont have sensors in your home.</p>
+                <p>No tienes sensores registrados para este hogar.</p>
             {% endif %}
 
          </div>
