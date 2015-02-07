@@ -2,7 +2,19 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>SmartHome +</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+        {# Load the tag library #}
+        {% load bootstrap3 %}
+
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        {# Display django.contrib.messages as Bootstrap alerts #}
+        {% bootstrap_messages %}
 </head>
 <body>
 
@@ -11,28 +23,33 @@
             <h1>Lista de sensores</h1>
 
             {% if sensorList %}
-                <table align="center" border="1">
-                    <tr>
-                        <td><b>Id</b></td>
-                        <td><b>Description</b></td>
-                        <td><b>Active?</b></td>
-                        <td><b>Sensor type</b></td>
-                        <td><b>Definition</b></td>
-                        <td><b>Criticaly</b></td>
-                    </tr>
+            <table align="center" border="1">
+                <tr>
+                    <td><b>Id</b></td>
+                    <td><b>Description</b></td>
+                    <td><b>Active?</b></td>
+                    <td><b>Sensor type</b></td>
+                    <td><b>Definition</b></td>
+                    <td><b>State definition</b></td>
+                  </tr>
                 {% for sensor in sensorList %}
 
-                    <tr>
-                        <td>{{ sensor.id }}</td>
-                        <td>{{ sensor.description }}</td>
-                        <td>{{ sensor.state }}</td>
-                        <td>{{ sensor.Sensor_type_id.name }}</td>
-                        <td>{{ sensor.Sensor_type_id.State_definition_id.value }}</td>
-                        <td>{{ sensor.criticaly }}</td>
+                  <tr>
+                    <td>{{ sensor.id }}</td>
+                    <td>{{ sensor.description }}</td>
+                    <td>{{ sensor.state }}</td>
+                    <td>{{ sensor.Sensor_type_id.name }}</td>
+                    <td>{{ sensor.criticaly }}</td>
+                    {% if sensor.state  == True %}
+                        <td>{{ sensor.Sensor_type_id.State_definition_id.true_state }}</td>
+                    {% endif %}
+                    {% if sensor.state  == False %}
+                        <td>{{ sensor.Sensor_type_id.State_definition_id.false_state }}</td>
+                    {% endif %}
 
-                    </tr>
+                  </tr>
                 {% endfor %}
-                </table>
+            </table>
             {% else %}
                 <p>You dont have sensors in your home.</p>
             {% endif %}
