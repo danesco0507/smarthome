@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <section class="content">
+        <div class="formulario">
+            <h1>Lista de sensores</h1>
+
+                <form action="{{ request.path }} " method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <p class="submit"><input type="submit" value="Save"/></p>
+                </form>
+
+            {% if sensorList %}
+            <ul>
+                {% for sensor in sensorList %}
+                    <li>{{ sensor.id }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>You dont have sensors in your home.</p>
+            {% endif %}
+
+        </div>
+    </section>
+
+</body>
+</html>
