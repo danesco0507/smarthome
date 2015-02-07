@@ -30,6 +30,6 @@ class Sensor(models.Model):
     name=models.CharField(max_length=50, verbose_name='Sensor name')
     description=models.CharField(max_length=100, verbose_name='Sensor description')
     state=models.BooleanField( default='false', verbose_name='Sensor state')
-    criticaly=models.ImageField( verbose_name='Sensor criticaly')
+    criticaly=models.IntegerField( verbose_name='Sensor criticaly')
     Building_id=models.ForeignKey(Building, verbose_name='Building')
     Sensor_type_id=models.ForeignKey(Sensor_type, verbose_name='Sensor type')
