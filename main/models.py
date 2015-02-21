@@ -20,7 +20,7 @@ class Building(models.Model):
 
 class State_definition(models.Model):
     name = models.CharField(max_length=30, verbose_name='State definition name')
-    value= models.BooleanField( verbose_name='State definition value')
+    value= models.BooleanField(default='false', verbose_name='State definition value')
 
 class Sensor_type(models.Model):
     name=models.CharField(max_length=30, verbose_name='Sensor type name')
@@ -29,7 +29,7 @@ class Sensor_type(models.Model):
 class Sensor(models.Model):
     name=models.CharField(max_length=50, verbose_name='Sensor name')
     description=models.CharField(max_length=100, verbose_name='Sensor description')
-    state=models.BooleanField( verbose_name='Sensor state')
+    state=models.BooleanField( default='false', verbose_name='Sensor state')
     criticaly=models.ImageField( verbose_name='Sensor criticaly')
     Building_id=models.ForeignKey(Building, verbose_name='Building')
     Sensor_type_id=models.ForeignKey(Sensor_type, verbose_name='Sensor type')
