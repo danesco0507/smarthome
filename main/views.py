@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User,Group
 
-
+@login_required()
 def index (request):
     context = {}
     return render(request, 'main/index.html',context)
