@@ -11,7 +11,7 @@ from django.contrib.auth.models import User,Group
 @login_required()
 def index (request):
     context = {}
-    return render(request, 'main/index.html',context)
+    return render(request, 'index.html',context)
 
 @login_required(login_url='/accounts/login/')
 def sensors_list(request, building_id=None):
