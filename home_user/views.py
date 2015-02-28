@@ -19,5 +19,6 @@ def building_list(request):
     user = request.user
 
     buildingList = Building.objects.filter(user_id = user.id)
+
     context= {'buildingList': buildingList}
     return render(request, 'home_user/building_list.html',context)
