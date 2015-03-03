@@ -12,12 +12,20 @@
             <h1>Lista de inmuebles</h1>
 
             {% if buildingList %}
-            <ul>
+                <table align="center" border="1">
+                    <tr>
+                        <td><b>Id</b></td>
+                        <td><b>Nombre</b></td>
+                        <td><b>Estado</b></td>
+                    </tr>
                 {% for building in buildingList %}
-                    <li>{{ building.name }} {{ status|get_building_status:building.id }}</li>
-
+                    <tr>
+                        <td><a href="/home_user/{{ building.id }}/sensors/">{{ building.id }}</a></td>
+                        <td>{{ building.name }}</td>
+                        <td>{{ status|get_building_status:building.id }}</td>
+                    </tr>
                 {% endfor %}
-            </ul>
+                </table>
             {% else %}
                 <p>You don't have buildings.</p>
             {% endif %}
