@@ -6,10 +6,16 @@ from django.contrib.auth.models import User, Group
 class Building_type(models.Model):
     name=models.CharField(max_length=30, verbose_name='Building type')
 
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
+
 
 class Neighborhood(models.Model):
     name=models.CharField(max_length=30, verbose_name='Neighborhood')
     risk_level=models.IntegerField(verbose_name='Risk level')
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
 
 class Building(models.Model):
     name = models.CharField(max_length=30, verbose_name='Building name')
@@ -18,18 +24,31 @@ class Building(models.Model):
     building_type=models.ForeignKey(Building_type, verbose_name='Building type')
     neighborhood_id=models.ForeignKey(Neighborhood, verbose_name='Neighborhood')
 
+    def __str__(self):
+        return self.name
+
+
 class State_definition(models.Model):
     name = models.CharField(max_length=30, verbose_name='State definition name')
     value= models.BooleanField(default='false', verbose_name='State definition value')
+
+    def __str__(self):
+        return self.name
 
 class Sensor_type(models.Model):
     name=models.CharField(max_length=30, verbose_name='Sensor type name')
     State_definition_id=models.ForeignKey(State_definition, verbose_name='Sensor type state definition')
 
+    def __str__(self):
+        return self.name
+
 class Sensor(models.Model):
     name=models.CharField(max_length=50, verbose_name='Sensor name')
     description=models.CharField(max_length=100, verbose_name='Sensor description')
     state=models.BooleanField( default='false', verbose_name='Sensor state')
-    criticaly=models.ImageField( verbose_name='Sensor criticaly')
+    criticaly = models.IntegerField(verbose_name='Sensor criticaly')
     Building_id=models.ForeignKey(Building, verbose_name='Building')
     Sensor_type_id=models.ForeignKey(Sensor_type, verbose_name='Sensor type')
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name

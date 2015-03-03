@@ -1,6 +1,7 @@
 from main.models import Sensor, Sensor_type, Building
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -22,3 +23,4 @@ def building_list(request):
 
     context= {'buildingList': buildingList}
     return render(request, 'home_user/building_list.html',context)
+

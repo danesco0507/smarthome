@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    {% load building_extras %}
 </head>
 <body>
 
@@ -13,9 +14,7 @@
             {% if buildingList %}
             <ul>
                 {% for building in buildingList %}
-                    <li>{{ building.id }}</li>
-                    <li>{{ building.name }}</li>
-                    <li>{{ building.building_type }}</li>
+                    <li>{{ building.name }} {{ status|get_building_status:building.id }}</li>
 
                 {% endfor %}
             </ul>

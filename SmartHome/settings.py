@@ -104,6 +104,6 @@ TEMPLATE_LOADERS = (
 )
 
 try:
-  from local_settings import *
-except Exception as e:
-  pass
+    from local_settings import *
+except ImportError:
+    pass
