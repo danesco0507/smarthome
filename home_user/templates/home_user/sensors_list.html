@@ -10,18 +10,29 @@
         <div class="formulario">
             <h1>Lista de sensores</h1>
 
-                <form action="{{ request.path }} " method="post">
-                    {% csrf_token %}
-                    {{ form }}
-                    <p class="submit"><input type="submit" value="Save"/></p>
-                </form>
-
             {% if sensorList %}
-            <ul>
+            <table align="center" border="1">
+                <tr>
+                    <td><b>Id</b></td>
+                    <td><b>Description</b></td>
+                    <td><b>Active?</b></td>
+                    <td><b>Sensor type</b></td>
+                    <td><b>Definition</b></td>
+                    <td><b>Criticaly</b></td>
+                  </tr>
                 {% for sensor in sensorList %}
-                    <li>{{ sensor.id }}</li>
+
+                  <tr>
+                    <td>{{ sensor.id }}</td>
+                    <td>{{ sensor.description }}</td>
+                    <td>{{ sensor.state }}</td>
+                    <td>{{ sensor.Sensor_type_id.name }}</td>
+                    <td>{{ sensor.Sensor_type_id.State_definition_id.value }}</td>
+                    <td>{{ sensor.criticaly }}</td>
+
+                  </tr>
                 {% endfor %}
-            </ul>
+            </table>
             {% else %}
                 <p>You dont have sensors in your home.</p>
             {% endif %}
