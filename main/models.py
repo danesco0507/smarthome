@@ -20,8 +20,8 @@ class Building(models.Model):
 
 class State_definition(models.Model):
     name = models.CharField(max_length=30, verbose_name='State definition name')
-    true_state = models.CharField(max_length=30, verbose_name='True State Definition')
-    false_state = models.CharField(max_length=30, verbose_name='False State Definition')
+    true_state = models.CharField(max_length=30, verbose_name='True State Definition', null=True, blank=True)
+    false_state = models.CharField(max_length=30, verbose_name='False State Definition', null=True, blank=True)
 
 class Sensor_type(models.Model):
     name=models.CharField(max_length=30, verbose_name='Sensor type name')
