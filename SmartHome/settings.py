@@ -87,7 +87,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-LOGIN_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home_user/'
 LOGIN_URL = '/login/'
 
 TEMPLATE_DIRS = (
