@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    {% load building_extras %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+    {# Load the tag library #}
+    {% load bootstrap3 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+</head>
+<body>
+<div class="wrapper">
+    <div class="box">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <!-- main right col -->
+            <div class="column" id="main">
+                <div class="navbar navbar-blue navbar-static-top">
+                    <div class="navbar-header">
+                        <a href="/" class="navbar-brand logo">SmartHome +</a>
+                    </div>
+                </div>
+                <div class="padding">
+                    <div class="full col-sm-12">
+                        <!-- content -->
+                    </div>
+                    <div class="row">
+                        <section class="content">
+                            <div class="formulario">
+                                <h1>Lista de inmuebles</h1>
+
+                                {% if buildingList %}
+                                    <table align="center" border="1">
+                                        <tr>
+                                            <td><b>Id</b></td>
+                                            <td><b>Nombre</b></td>
+                                            <td><b>Estado</b></td>
+                                        </tr>
+                                        {% for building in buildingList %}
+                                            <tr>
+                                                <td>
+                                                    <a href="/home_user/{{ building.id }}/sensors/">{{ building.id }}</a>
+                                                </td>
+                                                <td>{{ building.name }}</td>
+                                                <td>{{ status|get_building_status:building.id }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    <p>You don't have buildings.</p>
+                                {% endif %}
+
+                            </div>
+                        </section>
+                    </div>
+                    <!--/row-->
+                    <div class="row" id="footer">
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <hr>
+                    <h4 class="text-center">
+                        <a href="www.uniandes.edu.co" target="ext">Uniandes</a>
+                    </h4>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <!-- /main -->
+        </div>
+</div>
+</body>
+</html>
