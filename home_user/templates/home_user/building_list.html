@@ -47,17 +47,13 @@
                                     <table align="center" class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th><Id</th>
                                                 <th>Nombre</th>
                                                 <th>Estado</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for building in buildingList %}
-                                                <tr>
-                                                    <td>
-                                                        <a href="/home_user/{{ building.id }}/sensors/">{{ building.id }}</a>
-                                                    </td>
+                                                <tr onclick="window.document.location='/home_user/{{ building.id }}/sensors/'" style="cursor: pointer" >
                                                     <td>{{ building.name }}</td>
                                                     <td>{{ status|get_building_status:building.id }}</td>
                                                 </tr>
