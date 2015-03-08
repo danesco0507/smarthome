@@ -1,61 +1,104 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>SmartHome +</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
-        {# Load the tag library #}
-        {% load bootstrap3 %}
+    <title></title>
+    {% load building_extras %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+    {# Load the tag library #}
+    {% load bootstrap3 %}
 
-        {# Load CSS and JavaScript #}
-        {% bootstrap_css %}
-        {% bootstrap_javascript %}
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
-        {# Display django.contrib.messages as Bootstrap alerts #}
-        {% bootstrap_messages %}
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
 </head>
 <body>
-
-    <section class="content">
-        <div class="formulario">
-            <h1>Lista de sensores</h1>
-
+    <div class="wrapper">
+			<div class="box">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<!-- main right col -->
+						<div class="column" id="main">
+						<!-- top nav -->
+							<div class="navbar navbar-blue navbar-static-top">
+								<div class="navbar-header">
+									<a class="navbar-brand logo"><img src="{% static 'img/home.png' %}" class="home" width="35" height="35" align="left">SmartHome +</a>
+								</div>
+							</div>
+							<div class="padding">
+								<div class="full col-sm-12">
+                        <!-- content -->
+								</div>
+								<div class="row">
+									<div class="col-sm-4"> </div>
+                         <!-- main col left -->
+									<div class="col-sm-4">
+										<div class="panel panel-default">
+											<div class="panel-body">
+            <h3 class="text-center">Lista de sensores</h3>
+            <br><br>
             {% if sensorList %}
-            <table align="center" border="1">
-                <tr>
-                    <td><b>Id</b></td>
-                    <td><b>Description</b></td>
-                    <td><b>Active?</b></td>
-                    <td><b>Sensor type</b></td>
-                    <td><b>Definition</b></td>
-                    <td><b>State definition</b></td>
-                  </tr>
-                {% for sensor in sensorList %}
+            <table align="center" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Description</th>
+                        <th>Active?</th>
+                        <th>Sensor type</th>
+                        <th>Definition</th>
+                        <th>State definition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     {% for sensor in sensorList %}
 
-                  <tr>
-                    <td>{{ sensor.id }}</td>
-                    <td>{{ sensor.description }}</td>
-                    <td>{{ sensor.state }}</td>
-                    <td>{{ sensor.Sensor_type_id.name }}</td>
-                    <td>{{ sensor.criticaly }}</td>
-                    {% if sensor.state  == True %}
-                        <td>{{ sensor.Sensor_type_id.State_definition_id.true_state }}</td>
-                    {% endif %}
-                    {% if sensor.state  == False %}
-                        <td>{{ sensor.Sensor_type_id.State_definition_id.false_state }}</td>
-                    {% endif %}
+                          <tr>
+                            <td>{{ sensor.id }}</td>
+                            <td>{{ sensor.description }}</td>
+                            <td>{{ sensor.state }}</td>
+                            <td>{{ sensor.Sensor_type_id.name }}</td>
+                            <td>{{ sensor.criticaly }}</td>
+                            {% if sensor.state  == True %}
+                                <td>{{ sensor.Sensor_type_id.State_definition_id.true_state }}</td>
+                            {% endif %}
+                            {% if sensor.state  == False %}
+                                <td>{{ sensor.Sensor_type_id.State_definition_id.false_state }}</td>
+                            {% endif %}
 
-                  </tr>
-                {% endfor %}
+                          </tr>
+                     {% endfor %}
+                </tbody>
+
             </table>
             {% else %}
                 <p>You dont have sensors in your home.</p>
             {% endif %}
 
-        </div>
-    </section>
+         </div>
+										</div>
+									</div>
+								</div><!--/row-->
+								<div class="row" id="footer">
+								  <div class="col-sm-6"> </div>
+								</div>
+								<hr>
+								<h4 class="text-center">
+								<a href="www.uniandes.edu.co" target="ext">Uniandes</a>
+								</h4>
+								<hr>
+							</div><!-- /col-9 -->
+						</div><!-- /padding -->
+				</div>
+            <!-- /main -->
+
+			</div>
+		</div>
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/scripts.js"></script>
 
 </body>
 </html>
