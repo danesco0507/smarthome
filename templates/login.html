@@ -17,9 +17,6 @@
         {% bootstrap_messages %}
 </head>
 <body>
-    {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
 
     <div class="wrapper">
 			<div class="box">
@@ -44,6 +41,9 @@
 											<div class="panel-body">
 												<div class="form-login">
                                                     <h3 class="text-center"><img src="{% static 'img/photo.jpg' %}" class="img-circle"><br>Login</h3>
+                                                        {% if form.errors %}
+                                                        <p>Su usuario o contraseña no son correctos.</p>
+                                                        {% endif %}
                                                         <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
                                                             {% csrf_token %}
                                                                     {{ form.username.label_tag }}
