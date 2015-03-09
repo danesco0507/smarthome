@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf import settings
 from main import views
 from home_user import views
 
@@ -14,4 +15,8 @@ urlpatterns = patterns('',
     url(r'^login/', 'django.contrib.auth.views.login', {'template_name':'login.html'}),
 
     #url(r'^', 'django.contrib.auth.views.login', {'template_name':'login.html'}),
+)
+
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
