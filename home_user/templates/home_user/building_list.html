@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    {% load building_extras %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+    <!-- script references -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    {# Load the tag library #}
+    {% load bootstrap3 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+</head>
+<body>
+    <div class="wrapper">
+			<div class="box">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<!-- main right col -->
+						<div class="column" id="main">
+						<!-- top nav -->
+							<div class="navbar navbar-blue navbar-static-top">
+								<div class="navbar-header">
+									<a  class="navbar-brand logo"><img src="{% static 'img/home.png' %}" class="home" width="35" height="35" align="left">SmartHome +</a>
+								</div>
+							</div>
+							<div class="padding">
+								<div class="full col-sm-1 col-md-1">
+                        <!-- content -->
+								</div>
+								<div class="row">
+									<div class="col-sm-2 col-md-2"> </div>
+                         <!-- main col left -->
+									<div class="col-sm-6 col-md-6">
+										<div class="panel panel-default">
+											<div class="panel-body">
+
+                                <h3 class="text-center">Lista de inmuebles</h3>
+
+                                {% if buildingList %}
+
+
+                                    <table align="center" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for building in buildingList %}
+                                                <tr onclick="window.document.location='/home_user/{{ building.id }}/sensors/'" style="cursor: pointer" >
+                                                    <td>{{ building.name }}</td>
+                                                    <td>{{ status|get_building_status:building.id }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+
+                                    </table>
+                                {% else %}
+                                    <p>No tiene inmuebles registrados.</p>
+                                {% endif %}
+                           </div>
+										</div>
+									</div>
+								</div><!--/row-->
+
+							</div><!-- /col-9 -->
+						</div><!-- /padding -->
+				</div>
+            <!-- /main -->
+
+			</div>
+		</div>
+
+
+
+</body>
+</html>
