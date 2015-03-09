@@ -6,6 +6,9 @@
     {% load building_extras %}
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+    <!-- script references -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     {# Load the tag library #}
     {% load bootstrap3 %}
 
@@ -85,9 +88,7 @@
 
 			</div>
 		</div>
-	<!-- script references -->
-			<script src="{% static 'js/jquery.min.js' %}"></script>
-		    <script src="{% static 'js/scripts.js' %}"></script>
+
 
 </body>
 </html>
